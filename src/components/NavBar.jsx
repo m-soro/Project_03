@@ -2,8 +2,8 @@ import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import Avatar from "@mui/material/Avatar";
-import Stack from "@mui/material/Stack";
-import { deepOrange, deepPurple } from "@mui/material/colors";
+import CreateIcon from "@mui/icons-material/Create";
+import LogoutIcon from "@mui/icons-material/Logout";
 import "./NavBar.modules.css";
 
 export default function NavBar({ userID, userName }) {
@@ -23,30 +23,45 @@ export default function NavBar({ userID, userName }) {
       <nav className="navbar container-fluid">
         <ul>
           <li>
-            <Link to="/">Open Peaks</Link>
+            <Link to="/">
+              <strong>Open Peaks</strong>
+            </Link>
           </li>
         </ul>
         {!cookies.access_token ? (
-          <>
-            <ul>
-              <li>
-                <Link to="/auth">Sign up / Log in</Link>
-              </li>
-            </ul>
-          </>
-        ) : (
           <ul>
             <li>
-              <Link to="/">
-                {userName !== null ? `${userName}'s Account` : `Account`}
+              <Link to="/auth">Sign up / Log in</Link>
+            </li>
+          </ul>
+        ) : (
+          <ul className="logged-in-menu">
+            <li>
+              <Link
+                to="/"
+                data-tooltip={`${userName}'s Account`}
+                data-placement="bottom"
+              >
+                <Avatar sx={{ bgcolor: "#72cff8" }}>{`${userName[0]}`}</Avatar>
               </Link>
             </li>
             <li>
-              <Link to="/create-data">Create Lists</Link>
+              <Link
+                to="/create-data"
+                data-tooltip="Create List"
+                data-placement="bottom"
+              >
+                <CreateIcon />
+              </Link>
             </li>
             <li>
-              <Link to="/auth" onClick={logout}>
-                Log out
+              <Link
+                to="/auth"
+                onClick={logout}
+                data-tooltip="Log out"
+                data-placement="bottom"
+              >
+                <LogoutIcon />
               </Link>
             </li>
           </ul>

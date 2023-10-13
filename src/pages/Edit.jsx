@@ -54,8 +54,8 @@ export default function Edit() {
   );
 
   const populateList = () => {
-    return myDetailedLists.map((listItem) => {
-      <li>{listItem.label}</li>;
+    return myDetailedLists.map((listItem, index) => {
+      return <li key={index}>{listItem.label}</li>;
     });
   };
   return (

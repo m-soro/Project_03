@@ -3,6 +3,7 @@ import { resorts } from "../ulitities/data";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "./Dashboard.modules.css";
+import LoadingPage from "../components/LoadingPage.jsx";
 
 export default function Dashboard() {
   const { state } = useLocation();
@@ -10,6 +11,7 @@ export default function Dashboard() {
   const myListName = state?.mountainList.listName;
   const myListSlugs = myList?.mountains;
   const [mountainData, setMountainData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const moreDetailedList = resorts.filter((resort) =>
     myListSlugs?.includes(resort.slug)
@@ -36,6 +38,7 @@ export default function Dashboard() {
     myListSlugs.forEach((slug) => {
       getStatistics(slug).then((res) => {
         setMountainData((mountainData) => [...mountainData, res]);
+        setIsLoading(false);
       });
     });
   }, [state]);
@@ -216,6 +219,7 @@ export default function Dashboard() {
   return (
     <div className="Dashboard dashboard container-fluid">
       <div className="dashboard-heading">
+        <div>{isLoading ? <LoadingPage /> : <p></p>}</div>
         <h2>{myListName?.toUpperCase()}</h2>
       </div>
       <div className="cards-container">

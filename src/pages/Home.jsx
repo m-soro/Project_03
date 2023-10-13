@@ -8,11 +8,14 @@ import "./Home.modules.css";
 import NotLoggedIn from "./NotLoggedIn";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
+import LoadingPage from "../components/LoadingPage.jsx";
 
 export default function Home({ userName }) {
   const [cookies, _] = useCookies(["access_token"]);
   const [mountains, setMountains] = useState([]);
   const [savedMountains, setSavedMountains] = useState([]);
+
+  const [isLoading, setIsLoading] = useState(true);
 
   const userID = useGetUserID();
 
@@ -34,6 +37,7 @@ export default function Home({ userName }) {
           `https://open-peaks-v2-backend.onrender.com/mountain/savedMountains/ids/${userID}`
         );
         setSavedMountains(response.data.savedMountains);
+        setIsLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -41,7 +45,8 @@ export default function Home({ userName }) {
 
     fetchMountains();
     fetchSavedMountains();
-  }, [savedMountains]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleDelete = async (id) => {
     try {
@@ -93,8 +98,8 @@ export default function Home({ userName }) {
                       <li>
                         Tracking: {mountainList.mountains.length} resorts:{" "}
                       </li>
-                      {detailedList[index].map((item) => {
-                        return <li>{item.name}</li>;
+                      {detailedList[index].map((item, index) => {
+                        return <li key={index}>{item.name}</li>;
                       })}
                     </ul>
                     <div className="list-options">
@@ -127,10 +132,12 @@ export default function Home({ userName }) {
   const noResults = () => {
     return <div>No Lists</div>;
   };
+
   return (
     <div className="Home container home">
       {cookies.access_token ? (
         <>
+          <div>{isLoading ? <LoadingPage /> : <p></p>}</div>
           <h2>
             {mountains?.length === 0
               ? `Hi ${
