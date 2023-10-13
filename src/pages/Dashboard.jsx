@@ -20,7 +20,7 @@ export default function Dashboard() {
       method: "GET",
       url: `https://ski-resorts-and-conditions.p.rapidapi.com/v1/resort/${slug}`,
       headers: {
-        "X-RapidAPI-Key": process.env.REACT_APP_RAPID_API_KEY,
+        "X-RapidAPI-Key": import.meta.env.VITE_RAPID_API_KEY,
         "X-RapidAPI-Host": "ski-resorts-and-conditions.p.rapidapi.com",
       },
     };

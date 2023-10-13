@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
+import Avatar from "@mui/material/Avatar";
+import Stack from "@mui/material/Stack";
+import { deepOrange, deepPurple } from "@mui/material/colors";
 import "./NavBar.modules.css";
 
 export default function NavBar({ userID, userName }) {
