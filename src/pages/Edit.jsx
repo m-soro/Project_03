@@ -1,8 +1,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
-import { useEffect, useState } from "react";
-import axios from "axios";
 import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { resorts } from "../ulitities/data";
+import axios from "axios";
 import "./Edit.modules.css";
 
 export default function Edit() {

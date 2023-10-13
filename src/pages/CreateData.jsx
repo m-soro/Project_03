@@ -1,4 +1,9 @@
 import { useEffect, useState } from "react";
+import { useGetUserID } from "../hooks/useGetUserID.jsx";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { resorts } from "../ulitities/data.js";
+import axios from "axios";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -6,12 +11,7 @@ import FormControl from "@mui/material/FormControl";
 import ListItemText from "@mui/material/ListItemText";
 import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
-import { resorts } from "../ulitities/data.js";
 import Button from "@mui/material/Button";
-import axios from "axios";
-import { useGetUserID } from "../hooks/useGetUserID.jsx";
-import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
 import "./CreateData.modules.css";
 
 const ITEM_HEIGHT = 100;
@@ -104,8 +104,8 @@ export default function CreateData() {
 
   return (
     <div className="CreateData container create-data-container">
-      <div className="create-data">
-        <form onSubmit={onSubmit} className="create-form">
+      <div className="container">
+        <form onSubmit={onSubmit} className="create-form container">
           <h1>Create a list of resorts to track</h1>
           <input
             id="outlined-basic"

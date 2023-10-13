@@ -1,8 +1,8 @@
 .loading-page {
-  background: radial-gradient(
-    circle at 10% 20%,
-    rgb(242, 235, 243) 0%,
-    rgb(234, 241, 249) 90.1%
+  background: linear-gradient(
+    109.6deg,
+    rgb(204, 228, 247) 11.2%,
+    rgb(237, 246, 250) 100.2%
   );
 }
 

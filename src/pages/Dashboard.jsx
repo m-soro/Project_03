@@ -2,8 +2,8 @@ import axios from "axios";
 import { resorts } from "../ulitities/data";
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "./Dashboard.modules.css";
 import LoadingPage from "../components/LoadingPage.jsx";
+import "./Dashboard.modules.css";
 
 export default function Dashboard() {
   const { state } = useLocation();
@@ -139,8 +139,6 @@ export default function Dashboard() {
         };
 
         const showLocation = (map) => {
-          // const map =
-          //   "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d10245.793161796904!2d-122.96724402382902!3d50.05916564431904!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x5487225af28c5409%3A0x276c0edfa7be2148!2sWhistler%20Mountain!5e0!3m2!1sen!2sus!4v1697039798245!5m2!1sen!2sus";
           return (
             <details>
               <summary>Map</summary>
@@ -151,6 +149,7 @@ export default function Dashboard() {
                 allowfullscreen="true"
                 loading="lazy"
                 title="map"
+                // eslint-disable-next-line react/no-unknown-property
                 referrerpolicy="no-referrer-when-downgrade"
               ></iframe>
             </details>
@@ -180,7 +179,7 @@ export default function Dashboard() {
                   )}
                 </span>
               </header>
-              <div class="container-image">
+              <div className="container-image">
                 <img src={`${list.img}`} alt={`${list.name}`} />
               </div>
               <article className="chair-stats-box">

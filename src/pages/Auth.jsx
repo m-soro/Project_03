@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
+import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import "./Auth.modules.css";
 
@@ -12,11 +12,11 @@ export default function Auth() {
       {showLogIn ? <Login /> : <Register />}
 
       <Link onClick={() => setShowLogIn(!showLogIn)}>
-        <p></p>
+        <br />
         {showLogIn ? (
-          <p>Don't have an account? Register</p>
+          <p className="under-form-text">Don't have an account? Register</p>
         ) : (
-          <p>Have an account? Log in</p>
+          <p className="under-form-text">Have an account? Log in</p>
         )}
       </Link>
     </div>
@@ -147,9 +147,9 @@ const Form = ({
   }, []);
 
   return (
-    <main className="container">
+    <main className="container main-container">
       <article className="grid">
-        <div>
+        <div className="form-side">
           <hgroup>
             <h1>{label}</h1>
             <p>{message}</p>

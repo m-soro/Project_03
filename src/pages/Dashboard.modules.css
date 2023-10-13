@@ -5,7 +5,6 @@
   flex-direction: column;
   flex-wrap: wrap;
   width: 95%;
-  height: auto;
 }
 
 .dashboard-heading {
@@ -23,24 +22,18 @@
 .mountain-card-article {
   /* border: 2px solid blue; */
   display: flex;
-  padding: 1rem 0;
+  padding-top: 0.8rem;
   gap: 0rem;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-evenly;
   flex-direction: column;
-}
-
-.mountain-card-article-header > img {
-  max-height: 350px;
-  max-width: auto;
-  object-fit: cover;
-  border-radius: 8px;
+  border-radius: 12px;
 }
 
 .container-image img {
   max-height: 300px;
   width: auto;
+  border-radius: 8px;
 }
 
 .mountain-card-article-header {
@@ -70,7 +63,6 @@ h5 {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  /* border: 1px solid orange; */
   padding: 0.2em;
 }
 
@@ -85,26 +77,30 @@ h5 {
   column-gap: 0.8rem;
   width: 100%;
 }
-.chair-stats-box > header > p {
+.chair-stats-box > header > h5 {
   padding-bottom: 0;
-  margin-bottom: 0.2em;
+  margin-bottom: 0;
 }
 
 .chair-stats-box {
+  margin-top: 0;
+  padding-top: 0;
   width: 90%;
   /* border: 1px solid blueviolet; */
 }
 
 .cards-container {
-  padding: 0 0;
+  padding: 0;
+  margin: 0;
   display: grid;
   column-gap: 1rem;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-rows: min-content;
 }
 
 .cards-container li {
-  padding: 1em 0 !important;
-  margin: 0.5em 0 !important;
+  padding: 0;
+  margin: 0;
 }
 
 .percentage,

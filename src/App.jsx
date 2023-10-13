@@ -1,5 +1,10 @@
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import CreateData from "./pages/CreateData";
@@ -9,7 +14,8 @@ import Edit from "./pages/Edit";
 import { useGetUserName } from "./hooks/useGetUserName";
 
 function App() {
-  const userName = useGetUserName();
+  let userName = useGetUserName();
+
   return (
     <div className="App">
       <Router>
@@ -26,6 +32,7 @@ function App() {
           />
           <Route path="/update/:id" element={<Edit />} />
           <Route path="/auth" element={<Auth />} />
+          <Route path="*" element={<Navigate to="/" />} />
         </Routes>
       </Router>
     </div>
