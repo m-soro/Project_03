@@ -1,0 +1,12 @@
+.navbar {
+  height: 5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.1px solid var(--form-element-border-color);
+  margin-bottom: 1rem;
+}
+
+.navbar > ul li {
+  padding: 0 2em;
+}

@@ -1,0 +1,25 @@
+.mountain-list-article-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.list-options {
+  display: flex;
+  gap: 1rem;
+  flex: 1;
+}
+
+.resort-list-footer {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1.5rem;
+  justify-content: left;
+  flex-wrap: wrap;
+  flex: 6;
+  font-size: smaller;
+}
+
+.mountain-list-article-header {
+  background-color: #f7f7f7;
+}

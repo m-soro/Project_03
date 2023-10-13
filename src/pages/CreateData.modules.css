@@ -1,0 +1,39 @@
+.create-data-container {
+  display: flex;
+  justify-content: center;
+}
+.create-data {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2em;
+  flex-wrap: wrap;
+}
+
+.submit-button {
+  width: auto !important;
+}
+
+.selections-list,
+.input-label {
+  font-size: smaller;
+  font-weight: 200;
+}
+
+[type="checkbox"] {
+  font-size: xx-small !important;
+}
+
+.selected-list,
+li {
+  list-style-type: none !important;
+}
+
+.select-save {
+  display: flex;
+  gap: 1em;
+}
+
+.submit-button {
+  width: max-content !important;
+}

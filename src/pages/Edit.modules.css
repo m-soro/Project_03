@@ -1,0 +1,26 @@
+.edit-form {
+  display: flex;
+  align-items: center;
+  column-gap: 0.5em;
+}
+
+.edit-submit-button {
+  height: fit-content;
+  width: fit-content;
+}
+
+.included-resorts {
+  display: flex;
+  flex-direction: column;
+}
+
+.edit-form-article,
+.included-resorts-article {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.included-resorts-article {
+  padding-top: 1.5rem;
+}

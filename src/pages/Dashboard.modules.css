@@ -1,0 +1,121 @@
+.dashboard {
+  /* border: 2px solid red; */
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 95%;
+  height: auto;
+}
+
+.dashboard-heading {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  /* border: 1px solid grey; */
+}
+
+.dashboard-heading > h1 {
+  margin-bottom: 0.3rem;
+}
+
+.mountain-card-article {
+  /* border: 2px solid blue; */
+  display: flex;
+  padding: 1rem 0;
+  gap: 0rem;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-direction: column;
+}
+
+.mountain-card-article-header > img {
+  max-height: 350px;
+  max-width: auto;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.container-image img {
+  max-height: 300px;
+  width: auto;
+}
+
+.mountain-card-article-header {
+  padding: 0 0.5rem;
+  margin: 0;
+  background-color: transparent;
+  /* border: 1px solid green; */
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.mountain-card-article-header > h4,
+h5 {
+  margin-bottom: 0.5rem;
+}
+
+.percentage {
+  display: flex;
+  justify-content: space-evenly;
+  column-gap: 0.8rem;
+}
+
+.mountain-card-article-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  /* border: 1px solid orange; */
+  padding: 0.2em;
+}
+
+.mountain-card-article-body-open-closed-sched {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-top: 0.5rem;
+  padding-bottom: 0;
+
+  margin: 0 !important;
+  column-gap: 0.8rem;
+  width: 100%;
+}
+.chair-stats-box > header > p {
+  padding-bottom: 0;
+  margin-bottom: 0.2em;
+}
+
+.chair-stats-box {
+  width: 90%;
+  /* border: 1px solid blueviolet; */
+}
+
+.cards-container {
+  /* border: 2px solid grey; */
+  padding: 0 1rem;
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+}
+
+.cards-container li {
+  padding: 1em 0;
+  margin: 0.5em 0;
+}
+
+.percentage,
+.mountain-card-article-body-open-closed-sched,
+.chair-and-map,
+.chair-and-map td {
+  font-size: smaller;
+}
+
+.chair-and-map tbody {
+  /* border: 1px solid red; */
+  width: 100%;
+}
