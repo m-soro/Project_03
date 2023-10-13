@@ -38,7 +38,7 @@ export default function Dashboard() {
         setMountainData((mountainData) => [...mountainData, res]);
       });
     });
-  }, []);
+  }, [state]);
 
   const makeCards = (list) => {
     const filtered = mountainData.filter((md) =>
