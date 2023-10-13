@@ -57,7 +57,6 @@ article div {
 
 @media only screen and (max-width: 992px) {
   .form-side {
-    background: url("https://github.com/m-soro/Project_2/blob/main/src/assets/images/06.jpeg?raw=true");
     background-position: center;
     background-size: cover;
     padding: 3em 2.7em;
@@ -99,6 +98,9 @@ article div:nth-of-type(2) {
 @media (min-width: 992px) {
   .grid > div:nth-of-type(2) {
     display: block;
+  }
+  .form-side {
+    background-image: none !important;
   }
 }
 

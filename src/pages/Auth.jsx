@@ -149,7 +149,12 @@ const Form = ({
   return (
     <main className="container main-container">
       <article className="grid">
-        <div className="form-side">
+        <div
+          className="form-side"
+          style={{
+            backgroundImage: `url(https://github.com/m-soro/Project_2/blob/main/src/assets/images/${randomImage}?raw=true)`,
+          }}
+        >
           <hgroup>
             <h1>{label}</h1>
             <p>{message}</p>
