@@ -177,10 +177,46 @@ export default function Home() {
       } else {
         return (
           <>
-            <h2>Hi {`${userName}`},</h2>
-            <p>
-              Looks like your list is empty. Once created it will appear here.
-            </p>
+            <article className="welcome-article">
+              <header>
+                <h2 className="welcome-user">Hi {`${userName}`},</h2>
+                <p>Looks like your list is empty.</p>
+              </header>
+              <body>
+                <ul className="instructions">
+                  <li>
+                    Click the pen icon to create and save a list of resorts to
+                    track
+                  </li>
+                  <li>
+                    Select from 148 resorts, create a list based on region, your
+                    season pass, or resorts that you plan to visit
+                  </li>
+                  <li>Once created your list(s) will appear here</li>
+
+                  <li>Click the the list name to view your dashboard</li>
+                  <ul className="sub-list">
+                    <li>
+                      Your dashboard contains the resorts you are tracking
+                    </li>
+                    <li>
+                      View percentage of open/closed/scheduled lift or chair
+                      statistics
+                    </li>
+                    <li>View detailed chair or lift status</li>
+                    <li>See the resort's map and visit the website</li>
+                  </ul>
+                </ul>
+              </body>
+              <footer>
+                <blockquote>
+                  Make sure to save your username and password. <br />
+                  Check out your dashboard(s) and have an awesome day! <br />
+                  <br />
+                  <cite>- Mark S.</cite>
+                </blockquote>
+              </footer>
+            </article>
           </>
         );
       }

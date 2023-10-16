@@ -23,3 +23,32 @@
 .mountain-list-article-header {
   background-color: #f7f7f7;
 }
+
+.welcome-user {
+  margin-bottom: 1rem;
+}
+
+.welcome-article {
+  /* padding: 0.5rem; */
+}
+
+.instructions {
+  padding-top: 1rem;
+}
+.instructions li {
+  font-size: smaller;
+  padding-bottom: 0.3rem;
+  list-style-type: circle !important;
+}
+ul.sub-list :last-child {
+  padding-bottom: 0;
+  margin-bottom: 0;
+}
+.welcome-article body {
+  padding: 0 1.5rem;
+}
+
+.welcome-article footer {
+  padding-top: 0;
+  padding-bottom: 2rem;
+}
