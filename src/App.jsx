@@ -11,25 +11,16 @@ import CreateData from "./pages/CreateData";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Edit from "./pages/Edit";
-import { useGetUserName } from "./hooks/useGetUserName";
 
 function App() {
-  let userName = useGetUserName();
-
   return (
     <div className="App">
       <Router>
-        <NavBar userName={userName} />
+        <NavBar />
         <Routes>
-          <Route path="/" element={<Home userName={userName} />} />
-          <Route
-            path="/create-data"
-            element={<CreateData userName={userName} />}
-          />
-          <Route
-            path="/dashboard"
-            element={<Dashboard userName={userName} />}
-          />
+          <Route path="/" element={<Home />} />
+          <Route path="/create-data" element={<CreateData />} />
+          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/update/:id" element={<Edit />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="*" element={<Navigate to="/" />} />

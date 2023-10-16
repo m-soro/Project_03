@@ -5,11 +5,12 @@ import Avatar from "@mui/material/Avatar";
 import CreateIcon from "@mui/icons-material/Create";
 import LogoutIcon from "@mui/icons-material/Logout";
 import "./NavBar.modules.css";
+import { useGetUserName } from "../hooks/useGetUserName";
 
-export default function NavBar({ userID, userName }) {
+export default function NavBar({ userID }) {
   const [cookies, setCookies] = useCookies(["access_token"]);
   const navigate = useNavigate();
-
+  let userName = useGetUserName();
   // reset the cookie
   const logout = () => {
     setCookies("access_token", "");
@@ -24,7 +25,12 @@ export default function NavBar({ userID, userName }) {
         <ul>
           <li>
             <Link to="/">
-              <strong>Open Peaks</strong>
+              {/* <strong>Open Peaks</strong> */}
+              <img
+                src="https://github.com/m-soro/Project_2/blob/main/src/assets/images/openPeaks.png?raw=true"
+                alt=""
+                style={{ height: "65px", width: "auto" }}
+              />
             </Link>
           </li>
         </ul>

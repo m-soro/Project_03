@@ -4,18 +4,22 @@ import { useState, useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import { resorts } from "../ulitities/data";
-import NotLoggedIn from "./NotLoggedIn";
 import "./Home.modules.css";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import LoadingPage from "../components/LoadingPage.jsx";
+import { useGetUserName } from "../hooks/useGetUserName";
+import NotLoggedIn from "./NotLoggedIn";
 
-export default function Home({ userName }) {
+export default function Home() {
+  let userName = useGetUserName();
+
   const [cookies, _] = useCookies(["access_token"]);
   const [mountains, setMountains] = useState([]);
   const [savedMountains, setSavedMountains] = useState([]);
-
   const [isLoading, setIsLoading] = useState(true);
+  const [showWarning, setShowWarning] = useState(false);
+  const [toBeDeleted, setToBeDeleted] = useState(null);
 
   const userID = useGetUserID();
 
@@ -46,16 +50,55 @@ export default function Home({ userName }) {
     fetchMountains();
     fetchSavedMountains();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [showWarning]);
 
-  const handleDelete = async (id) => {
+  const handleDelete = (id) => {
+    setShowWarning(true);
+    setToBeDeleted(id);
+  };
+
+  const confirmDelete = async () => {
     try {
       await axios.delete(
-        `https://open-peaks-v2-backend.onrender.com/mountain/delete/${id}`
+        `https://open-peaks-v2-backend.onrender.com/mountain/delete/${toBeDeleted}`
       );
+      setShowWarning(false);
     } catch (error) {
       console.log(error);
     }
+  };
+
+  const Warning = () => {
+    return (
+      <dialog open>
+        <article
+          style={{ padding: "2rem 2rem 5rem 2rem", borderRadius: "12px" }}
+        >
+          <h3>Warning</h3>
+          <p>You are about to delete this list. Are you sure?</p>
+          <footer style={{ backgroundColor: "transparent" }}>
+            <Link
+              style={{ color: "#f2910a", borderColor: "#f2910a" }}
+              to="/"
+              role="button"
+              className="outline"
+              onClick={() => setShowWarning(!showWarning)}
+            >
+              Cancel
+            </Link>
+            <Link
+              style={{ color: "#f67280", borderColor: "#f67280" }}
+              to="/"
+              role="button"
+              className="outline"
+              onClick={() => confirmDelete()}
+            >
+              Confirm
+            </Link>
+          </footer>
+        </article>
+      </dialog>
+    );
   };
 
   const withResults = () => {
@@ -151,6 +194,7 @@ export default function Home({ userName }) {
       {cookies.access_token ? (
         <>
           <div>{isLoading ? <LoadingPage /> : <p></p>}</div>
+          <div>{showWarning ? <Warning /> : <p></p>}</div>
           {withResults()}
         </>
       ) : (
