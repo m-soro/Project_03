@@ -12,7 +12,12 @@ article {
 }
 
 article div {
-  padding: 1rem;
+  padding: 0.1rem;
+}
+
+.under-form-text {
+  padding-top: 5px;
+  padding-left: 2px;
 }
 
 @media (min-width: 576px) {
@@ -73,10 +78,6 @@ article div {
     color: var(--h3-color);
   }
 
-  .under-form-text {
-    padding-left: 1rem;
-  }
-
   .form-side > form,
   input {
     font-weight: 300;
@@ -105,5 +106,5 @@ article div:nth-of-type(2) {
 }
 
 .auth-page > main.container {
-  margin-top: 3rem;
+  margin-top: 2.5rem;
 }

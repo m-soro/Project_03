@@ -14,7 +14,6 @@ export default function Auth() {
       {showLogIn ? <Login /> : <Register />}
 
       <Link onClick={() => setShowLogIn(!showLogIn)}>
-        <br />
         {showLogIn ? (
           <p className="under-form-text">Don't have an account? Register</p>
         ) : (
