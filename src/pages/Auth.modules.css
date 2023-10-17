@@ -86,6 +86,10 @@ article div {
   .form-side > form > input {
     background-color: whitesmoke;
   }
+  .under-form-text,
+  .disclaimer-link {
+    padding-left: 18px;
+  }
 }
 
 /* Hero Image */
