@@ -2,6 +2,8 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
 import "./Auth.modules.css";
 
 export default function Auth() {
@@ -27,6 +29,7 @@ export default function Auth() {
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [prompt, setPrompt] = useState("");
 
   // set the jwt token to cookie using the useCookies hook
   // the cookie is not needed, only need the function that sets the cookie
@@ -46,7 +49,11 @@ const Login = () => {
         }
       );
       // console.log(response.data.message);
-      if (response.data.message) alert(response.data.message);
+      if (response.data.message) {
+        // alert(response.data.message);
+        setPrompt(response.data.message);
+      }
+
       if (response.data.token) {
         // set the response to cookie
         setCookies("access_token", response.data.token);
@@ -70,6 +77,7 @@ const Login = () => {
       placeholder="User name"
       onSubmit={onSubmit}
       message="See latest updates of your favorite snow sports destinations"
+      prompt={prompt}
     />
   );
 };
@@ -78,6 +86,7 @@ const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [_, setCookies] = useCookies(["access_token"]);
+  const [prompt, setPrompt] = useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();
@@ -91,7 +100,7 @@ const Register = () => {
           password,
         }
       );
-      alert(response.data.message);
+      setPrompt(response.data.message);
       setUsername("");
       setPassword("");
     } catch (error) {
@@ -108,6 +117,7 @@ const Register = () => {
       placeholder="User name"
       label="Sign up"
       message="Create an account to keep track of your favorite snow sports destinations"
+      prompt={prompt}
     />
   );
 };
@@ -125,6 +135,7 @@ const Form = ({
   message,
   onSubmit,
   placeholder,
+  prompt,
 }) => {
   const [randomImage, setRandomImage] = useState("");
 
@@ -146,8 +157,43 @@ const Form = ({
     setRandomImage(random());
   }, []);
 
+  const showPrompt = () => {
+    if (prompt === "Your account is created. Please log in.") {
+      return (
+        <Alert severity="success">
+          Account created. <strong>Please log in.</strong>
+        </Alert>
+      );
+    } else if (prompt === "User already exists. Please log in.") {
+      return (
+        <Alert severity="info">
+          This account already exists. <strong>Please log in.</strong>
+        </Alert>
+      );
+    } else if (prompt === "Account does not exist. Please create an account.") {
+      return (
+        <Alert severity="error">
+          Account does not exist. <strong>Please create an account.</strong>
+        </Alert>
+      );
+    } else if (prompt === "Username or password is incorrect.") {
+      return (
+        <Alert severity="warning">
+          Username or password is <strong>incorrect</strong>.
+        </Alert>
+      );
+    }
+  };
+
   return (
     <main className="container main-container">
+      {prompt ? (
+        <p style={{ paddingBottom: "0", marginBottom: "12px" }}>
+          {showPrompt()}
+        </p>
+      ) : (
+        <p></p>
+      )}
       <article className="grid">
         <div
           className="form-side"
