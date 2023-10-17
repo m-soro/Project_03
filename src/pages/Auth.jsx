@@ -1,14 +1,42 @@
+import * as React from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Alert from "@mui/material/Alert";
-import AlertTitle from "@mui/material/AlertTitle";
+import Button from "@mui/material/Button";
+import Snackbar from "@mui/material/Snackbar";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 import "./Auth.modules.css";
 
 export default function Auth() {
   const [showLogIn, setShowLogIn] = useState(false);
+  const [open, setOpen] = useState(false);
 
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const action = (
+    <React.Fragment>
+      <Button color="secondary" size="inherit" onClick={handleClose}>
+        UNDO
+      </Button>
+      <IconButton
+        size="small"
+        aria-label="close"
+        color="inherit"
+        onClick={handleClose}
+      >
+        <CloseIcon fontSize="inherit" />
+      </IconButton>
+    </React.Fragment>
+  );
+
+  const handleClick = () => {
+    setOpen(true);
+  };
   return (
     <div className="Auth auth-page container">
       {showLogIn ? <Login /> : <Register />}
@@ -20,6 +48,21 @@ export default function Auth() {
           <p className="under-form-text">Have an account? Log in</p>
         )}
       </Link>
+      <div className="disclaimer">
+        <Link to="" onClick={handleClick}>
+          <p className="disclaimer-link">Important information</p>
+        </Link>
+        <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
+            <p className="disclaimer-text">
+              Note: This app is deployed using a free service. As a result the
+              app slows down on idle if its not receiving inbound traffic within
+              15 mins. It may take a few minutes to get the service started.
+              Thank you in advance for your patience.
+            </p>
+          </Alert>
+        </Snackbar>
+      </div>
     </div>
   );
 }
