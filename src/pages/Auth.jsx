@@ -55,10 +55,9 @@ export default function Auth() {
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>
             <p className="disclaimer-text">
-              Note: This app is deployed using a free service. As a result the
-              app slows down on idle if its not receiving inbound traffic within
-              15 mins. It may take a few minutes to get the service started.
-              Thank you in advance for your patience.
+              Note: This app is deployed using a free service. As a result your
+              experience may be impacted. It may take a few minutes to get the
+              service started. Thank you for your patience.
             </p>
           </Alert>
         </Snackbar>
