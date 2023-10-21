@@ -5,6 +5,8 @@ import {
   Route,
   Navigate,
 } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Home from "./pages/Home";
 import Auth from "./pages/Auth";
 import CreateData from "./pages/CreateData";
@@ -13,6 +15,22 @@ import Dashboard from "./pages/Dashboard";
 import Edit from "./pages/Edit";
 
 function App() {
+  const [helperFile, setHelperFile] = useState(null);
+  useEffect(() => {
+    const fetchHelperFile = async () => {
+      try {
+        const response = await axios.get(
+          "https://open-peaks-v2-backend.onrender.com/dataseed/get-helper-file"
+        );
+        setHelperFile(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchHelperFile();
+  }, []);
+  console.log(helperFile);
+
   return (
     <div className="App">
       <Router>

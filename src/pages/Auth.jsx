@@ -4,10 +4,8 @@ import { useCookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Alert from "@mui/material/Alert";
-import Button from "@mui/material/Button";
 import Snackbar from "@mui/material/Snackbar";
-import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
+import LoadingPage from "../components/LoadingPage";
 import "./Auth.modules.css";
 
 export default function Auth() {
@@ -18,22 +16,6 @@ export default function Auth() {
     setOpen(false);
   };
 
-  const action = (
-    <React.Fragment>
-      <Button color="secondary" size="inherit" onClick={handleClose}>
-        UNDO
-      </Button>
-      <IconButton
-        size="small"
-        aria-label="close"
-        color="inherit"
-        onClick={handleClose}
-      >
-        <CloseIcon fontSize="inherit" />
-      </IconButton>
-    </React.Fragment>
-  );
-
   const handleClick = () => {
     setOpen(true);
   };
@@ -43,6 +25,7 @@ export default function Auth() {
 
       <Link onClick={() => setShowLogIn(!showLogIn)}>
         {showLogIn ? (
+          // eslint-disable-next-line react/no-unescaped-entities
           <p className="under-form-text">Don't have an account? Register</p>
         ) : (
           <p className="under-form-text">Have an account? Log in</p>

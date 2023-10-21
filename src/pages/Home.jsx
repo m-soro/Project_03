@@ -12,6 +12,8 @@ import { useGetUserName } from "../hooks/useGetUserName";
 import NotLoggedIn from "./NotLoggedIn";
 
 export default function Home() {
+  // let localURL = "http://localhost:3001/mountain";
+  // let deployedURL = "https://open-peaks-v2-backend.onrender.com/mountain";
   let userName = useGetUserName();
 
   const [cookies, _] = useCookies(["access_token"]);
@@ -180,10 +182,11 @@ export default function Home() {
             <article className="welcome-article">
               <header>
                 <h2 className="welcome-user">Hi {`${userName}`},</h2>
-                <p>Looks like your list is empty.</p>
+                <p>Welcome to your home page. Your list is empty.</p>
               </header>
               <body>
                 <ul className="instructions">
+                  <p>To get started:</p>
                   <li>
                     Click the pen icon to create and save a list of resorts to
                     track
