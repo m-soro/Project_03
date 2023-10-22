@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import Alert from "@mui/material/Alert";
 import Snackbar from "@mui/material/Snackbar";
-import LoadingPage from "../components/LoadingPage";
+import InfoOutlinedIcon from "@mui/icons-material/InfoOutlined";
 import "./Auth.modules.css";
 
 export default function Auth() {
@@ -33,7 +33,9 @@ export default function Auth() {
       </Link>
       <div className="disclaimer">
         <Link to="" onClick={handleClick}>
-          <p className="disclaimer-link">Important information</p>
+          <p className="disclaimer-link">
+            <InfoOutlinedIcon fontSize="x-small" /> Important information
+          </p>
         </Link>
         <Snackbar open={open} autoHideDuration={6000} onClose={handleClose}>
           <Alert onClose={handleClose} severity="info" sx={{ width: "100%" }}>

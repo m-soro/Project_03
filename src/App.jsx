@@ -13,6 +13,7 @@ import CreateData from "./pages/CreateData";
 import NavBar from "./components/NavBar";
 import Dashboard from "./pages/Dashboard";
 import Edit from "./pages/Edit";
+import resortsHelperDataContext from "./contexts/resortsHelperDataContext";
 
 function App() {
   const [helperFile, setHelperFile] = useState(null);
@@ -29,21 +30,22 @@ function App() {
     };
     fetchHelperFile();
   }, []);
-  console.log(helperFile);
 
   return (
     <div className="App">
-      <Router>
-        <NavBar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/create-data" element={<CreateData />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/update/:id" element={<Edit />} />
-          <Route path="/auth" element={<Auth />} />
-          <Route path="*" element={<Navigate to="/" />} />
-        </Routes>
-      </Router>
+      <resortsHelperDataContext.Provider value={helperFile}>
+        <Router>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/create-data" element={<CreateData />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/update/:id" element={<Edit />} />
+            <Route path="/auth" element={<Auth />} />
+            <Route path="*" element={<Navigate to="/" />} />
+          </Routes>
+        </Router>
+      </resortsHelperDataContext.Provider>
     </div>
   );
 }

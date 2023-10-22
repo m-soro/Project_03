@@ -1,9 +1,9 @@
 import axios from "axios";
-import { resorts } from "../ulitities/data";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useLocation } from "react-router-dom";
 import LoadingPage from "../components/LoadingPage.jsx";
 import "./Dashboard.modules.css";
+import resortsHelperDataContext from "../contexts/resortsHelperDataContext";
 
 export default function Dashboard() {
   const { state } = useLocation();
@@ -12,10 +12,19 @@ export default function Dashboard() {
   const myListSlugs = myList?.mountains;
   const [mountainData, setMountainData] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const helperFile = useContext(resortsHelperDataContext);
 
-  const moreDetailedList = resorts.filter((resort) =>
-    myListSlugs?.includes(resort.slug)
-  );
+  const getMoreDetailedList = () => {
+    if (helperFile !== null) {
+      try {
+        return helperFile.filter((resort) =>
+          myListSlugs?.includes(resort.slug)
+        );
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
 
   const getStatistics = async (slug) => {
     const options = {
@@ -91,8 +100,8 @@ export default function Dashboard() {
         };
 
         const showChairStatus = () => {
-          try {
-            if (data) {
+          if (data) {
+            try {
               const { lifts } = data;
               const { status: chairStatus } = lifts;
 
@@ -132,9 +141,9 @@ export default function Dashboard() {
                   </table>
                 </details>
               );
+            } catch (error) {
+              console.log(error);
             }
-          } catch (error) {
-            console.log(error);
           }
         };
 
@@ -146,11 +155,10 @@ export default function Dashboard() {
                 src={`${map}`}
                 width="100%"
                 height="380"
-                allowfullscreen="true"
+                allowFullScreen={true}
                 loading="lazy"
                 title="map"
-                // eslint-disable-next-line react/no-unknown-property
-                referrerpolicy="no-referrer-when-downgrade"
+                referrerPolicy="no-referrer-when-downgrade"
               ></iframe>
             </details>
           );
@@ -222,8 +230,8 @@ export default function Dashboard() {
         <h2>{myListName?.toUpperCase()}</h2>
       </div>
       <div className="cards-container">
-        {moreDetailedList?.map((list, index) => {
-          return <li key={index}>{makeCards(list, index)}</li>;
+        {getMoreDetailedList()?.map((list, index) => {
+          return <li key={index}>{makeCards?.(list, index)}</li>;
         })}
       </div>
     </div>

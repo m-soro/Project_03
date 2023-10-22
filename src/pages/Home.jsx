@@ -1,27 +1,27 @@
 import axios from "axios";
 import { useGetUserID } from "../hooks/useGetUserID.jsx";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
-import { resorts } from "../ulitities/data";
 import "./Home.modules.css";
 import ImageList from "@mui/material/ImageList";
 import ImageListItem from "@mui/material/ImageListItem";
 import LoadingPage from "../components/LoadingPage.jsx";
 import { useGetUserName } from "../hooks/useGetUserName";
 import NotLoggedIn from "./NotLoggedIn";
+import resortsHelperDataContext from "../contexts/resortsHelperDataContext.jsx";
 
 export default function Home() {
   // let localURL = "http://localhost:3001/mountain";
   // let deployedURL = "https://open-peaks-v2-backend.onrender.com/mountain";
   let userName = useGetUserName();
-
   const [cookies, _] = useCookies(["access_token"]);
   const [mountains, setMountains] = useState([]);
   const [savedMountains, setSavedMountains] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [showWarning, setShowWarning] = useState(false);
   const [toBeDeleted, setToBeDeleted] = useState(null);
+  const helperFile = useContext(resortsHelperDataContext);
 
   const userID = useGetUserID();
 
@@ -109,7 +109,11 @@ export default function Home() {
     );
 
     const detailedList = myList.map((list) => {
-      return resorts.filter((r) => list.mountains.includes(r.slug));
+      try {
+        return helperFile.filter((r) => list.mountains.includes(r.slug));
+      } catch (error) {
+        console.error(error);
+      }
     });
 
     try {

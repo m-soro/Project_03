@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/no-redundant-roles */
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { resorts } from "../ulitities/data";
+import { useEffect, useState, useContext } from "react";
+import resortsHelperDataContext from "../contexts/resortsHelperDataContext";
+
 import axios from "axios";
 import "./Edit.modules.css";
 
@@ -11,6 +12,7 @@ export default function Edit() {
   const [listToEdit, setListToEdit] = useState();
   const [listName, setListName] = useState();
   const navigate = useNavigate();
+  const helperFile = useContext(resortsHelperDataContext);
 
   const handleEdit = async (id) => {
     try {
@@ -49,7 +51,7 @@ export default function Edit() {
     }
   };
 
-  const myDetailedLists = resorts.filter((r) =>
+  const myDetailedLists = helperFile.filter((r) =>
     listToEdit?.message?.mountains?.includes(r.slug)
   );
 

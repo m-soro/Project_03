@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { useGetUserID } from "../hooks/useGetUserID.jsx";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { resorts } from "../ulitities/data.js";
 import axios from "axios";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
@@ -13,6 +12,7 @@ import Select from "@mui/material/Select";
 import Checkbox from "@mui/material/Checkbox";
 import Button from "@mui/material/Button";
 import "./CreateData.modules.css";
+import resortsHelperDataContext from "../contexts/resortsHelperDataContext.jsx";
 
 const ITEM_HEIGHT = 100;
 const ITEM_PADDING_TOP = 10;
@@ -25,18 +25,28 @@ const MenuProps = {
   },
 };
 
-const names = resorts.map((resort) => resort.label);
-
 export default function CreateData() {
   const [cookies, _] = useCookies();
   const navigate = useNavigate();
   const userID = useGetUserID();
   const [resortName, setResortName] = useState([]);
+  const helperFile = useContext(resortsHelperDataContext);
+
   const [mountain, setMountain] = useState({
     listName: "",
     mountains: [],
     userOwner: userID,
   });
+
+  const getNamesOfResort = () => {
+    if (helperFile !== null) {
+      try {
+        return helperFile.map((resort) => resort.label);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
 
   const handleChange = (event) => {
     const {
@@ -46,13 +56,19 @@ export default function CreateData() {
   };
 
   const slugs = [];
-  resorts.forEach((resort) => {
-    resortName.forEach((selected) => {
-      if (resort.label === selected) {
-        slugs.push(resort.slug);
-      }
-    });
-  });
+  if (helperFile !== null) {
+    try {
+      helperFile.forEach((resort) => {
+        resortName.forEach((selected) => {
+          if (resort.label === selected) {
+            slugs.push(resort.slug);
+          }
+        });
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   const handleNameChange = (event) => {
     const { name, value } = event.target;
@@ -143,7 +159,7 @@ export default function CreateData() {
                 MenuProps={MenuProps}
                 required
               >
-                {names.map((name) => (
+                {getNamesOfResort()?.map((name) => (
                   <MenuItem key={name} value={name}>
                     <Checkbox checked={resortName.indexOf(name) > -1} />
                     <ListItemText
